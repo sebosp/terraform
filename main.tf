@@ -1,5 +1,8 @@
 provider "aws" {
 }
+provider "google" {
+  project = "${var.google_project}"
+}
 terraform {
   backend "s3" {
     encrypt        = true
