@@ -8,7 +8,6 @@ Deploying [golang-http](https://github.com/sebosp/golang-http) simple app using:
 
 ## Provider: AWS
 Provider AWS is used for Remote State.
-TODO: Test AWS EKS
 
 ### Remote State
 The remote state resources are created through `aws-remote-state.tf`
@@ -39,11 +38,10 @@ When a terraform apply is ran, the dynamodb lock will be engaged, allowing
 teams to work concurrently.
 
 ### Tagging
-A series of default tags are set on variables.tf
-TODO: Test workspaces for different accounts.
+A series of default tags are set on `variables.tf`
 
-###Auth
-Auth is provided by loading environments based on the environment variable
+### Auth
+Provided by loading environments based on the environment variable
 The loading of different AWS envs is accomplished by using, in docker image:
  [sebosp/tvl](https://github.com/sebosp/tvl) the variable `TARGET_ENV`.
 This variable maps to a file in `~/envs/$TARGET_ENV` in the host filesystem.
@@ -73,8 +71,6 @@ The node pools are scaled up/down by using the following scripts:
 
 ### Auth
 Similar to the AWS Auth, a file exists in the host dir called `~/envs/GKE-${TARGET_ENV}.json`
-TODO: Document and automate authentication.
-TODO: Add gcloud to tvl image.
 
 ## Provider Kubernetes
 Provider Kubernetes is used for configuring namespaces and configmaps.
@@ -108,8 +104,12 @@ alias PROD='docker run --rm --cap-add=SYS_PTRACE -v $HOME/:/home/sre/work/ -e TA
 ```
 
 ## TODO
-In general, the structure is not meant for multiple environments/workspaces.
+- In general, the structure is not meant for multiple environments/workspaces.
 Given the size of the project (at least initially), it has not been seen as
 worth dividing into versioned modules.
-Figure out CI. Allowing terraform lint checks, ensure required tags are set,
+- Figure out CI. Allowing terraform lint checks, ensure required tags are set,
 create PRs before any `terraform apply`
+- Document and automate google authentication.
+- Add gcloud to tvl image.
+- Test AWS EKS
+
