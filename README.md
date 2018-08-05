@@ -1,4 +1,4 @@
-# terraform
+# terraform 1.0.0
 Deploying [golang-http](https://github.com/sebosp/golang-http) simple app using:
 - terraform v0.11.7
 - AWS remote state
