@@ -21,45 +21,45 @@ Inside each environment-specific directory, resources are further split in per-s
 A group and its policies can be defined in either `all/` or `<env>/` as its considered convenient.
 This structure helps map policies to groups in a very intuitive manner:
 - `vars/envs/all/iam/groups.yml`
-    ```yaml
-    iam_groups:
-      global_only_group:
-        name: global_only_group
-        inline_policies: ['global_policy1','global_policy2']
-```
+  ```yaml
+  iam_groups:
+    global_only_group:
+      name: global_only_group
+      inline_policies: ['global_policy1','global_policy2']
+  ```
 - `vars/envs/all/iam/policies.yml`
-    ```yaml
-    iam_inline_policies:
-      global_policy1: |
-        {
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Sid": "GlobalPolicy1",
-                    "Effect": "Allow",
-                    "Action": [
-                        "ec2:DescribeImages",
-                        "ec2:DescribeInstances",
-                        "ec2:DescribeTags"
-                    ],
-                    "Resource": [
-                        "*"
-                    ]
-                }
-            ]
-        }
-    ```
+  ```yaml
+  iam_inline_policies:
+    global_policy1: |
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Sid": "GlobalPolicy1",
+                  "Effect": "Allow",
+                  "Action": [
+                      "ec2:DescribeImages",
+                      "ec2:DescribeInstances",
+                      "ec2:DescribeTags"
+                  ],
+                  "Resource": [
+                      "*"
+                  ]
+              }
+          ]
+      }
+  ```
 - `vars/envs/prod/iam/groups.yml`
-    ```yaml
-    custom_iam_groups:
-      prod_only_group:
-        name: prod_only_group
-        inline_policies: ['global_policy1']
-    ```
+  ```yaml
+  custom_iam_groups:
+    prod_only_group:
+      name: prod_only_group
+      inline_policies: ['global_policy1']
+  ```
 - `vars/envs/prod/iam/policies.yml`
-    ```yaml
-    custom_iam_policies:
-a   ```
+  ```yaml
+  custom_iam_policies: {}
+a ```
 
 As is expected, the resources defined in `all` are overwritten by resources defined in per `env` setup as long as they match their name.
 Resources in `prod` can target resources in `all` but not vice-versa.
