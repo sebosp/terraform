@@ -1,0 +1,21 @@
+iam_groups:
+  ##### Group based Tests ####
+  # - A group is defined only in envs/all
+  # - The group is not defined in envs/prod
+  # - The group should be available
+  global_only_group:
+    name: global_only_group
+    inline_policies: ['global_policy']
+  # - A policy is defined in envs/all/
+  # - The policy is not defined in envs/prod/iam/policies.yml
+  # - The policy should be available for use
+  overwritten_global_group:
+    name: overwritten_global_group
+    inline_policies: ['non_existent_policy']
+  ##### Policy based Tests ####
+  # - A policy is defined in envs/all
+  # - The policy is also defined in envs/prod/iam/policies.yml
+  # - The policy should be overwritten
+  overwritten_global_policy:
+    name: overwritten_global_policy
+    inline_policies: ['non_existent_policy']

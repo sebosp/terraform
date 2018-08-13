@@ -1,0 +1,116 @@
+iam_inline_policies:
+  global_policy: |
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "GlobalPolicy",
+                "Effect": "Allow",
+                "Action": [
+                    "ec2:DescribeImages",
+                    "ec2:DescribeInstances",
+                    "ec2:DescribeTags"
+                ],
+                "Resource": [
+                    "*"
+                ]
+            }
+        ]
+    }
+  overwritten_global_policy: |
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "OverwrittenGlobalPolicy",
+                "Effect": "Allow",
+                "Action": [
+                    "ec2:DescribeImages",
+                    "ec2:DescribeInstances",
+                    "ec2:DescribeTags"
+                ],
+                "Resource": [
+                    "*"
+                ]
+            }
+        ]
+    }
+  admin_access: |
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "*",
+                "Resource": "*"
+            }
+        ]
+    }
+  readonly_ec2: |
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": [
+            "ec2:Describe*",
+            "ec2:GetConsoleOutput",
+            "ec2:GetConsoleScreenshot",
+            "s3:List*",
+            "tag:Get*"
+          ],
+          "Effect": "Allow",
+          "Resource": "*"
+        }
+      ]
+    }
+  vault_root_iam: |
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "iam:AttachUserPolicy",
+            "iam:CreateAccessKey",
+            "iam:CreateUser",
+            "iam:DeleteAccessKey",
+            "iam:DeleteUser",
+            "iam:DeleteUserPolicy",
+            "iam:DetachUserPolicy",
+            "iam:ListAccessKeys",
+            "iam:ListAttachedUserPolicies",
+            "iam:ListGroupsForUser",
+            "iam:ListUserPolicies",
+            "iam:PutUserPolicy",
+            "iam:RemoveUserFromGroup"
+          ],
+          "Resource": [
+            "arn:aws:iam::{{ env_obj.account_id }}:user/vault-*"
+          ]
+        }
+      ]
+    }
+  grafana_cloudwatch: |
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "GrafanaCloudwatch",
+                "Effect": "Allow",
+                "Action": [
+                    "cloudwatch:ListMetrics",
+                    "cloudwatch:GetMetricStatistics"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "GrafanaEc2Describe",
+                "Effect": "Allow",
+                "Action": [
+                    "ec2:DescribeTags",
+                    "ec2:DescribeInstances"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
