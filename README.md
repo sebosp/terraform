@@ -59,7 +59,7 @@ This structure helps map policies to groups in a very intuitive manner:
 - `vars/envs/prod/iam/policies.yml`
   ```yaml
   custom_iam_policies: {}
-a ```
+  ```
 
 As is expected, the resources defined in `all` are overwritten by resources defined in per `env` setup as long as they match their name.
 Resources in `prod` can target resources in `all` but not vice-versa.
