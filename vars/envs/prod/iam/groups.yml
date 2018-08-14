@@ -4,18 +4,15 @@ custom_iam_groups:
   # - The group is not defined in all
   # - The group should be available
   prod_only_group:
-    name: prod_only_group
     inline_policies: ['global_policy']
   ##### Policy based Tests ####
   # - A policy is defined in envs/all/
   # - The policy is not defined in envs/prod/iam/policies.yml
   # - The policy should be available for use
   overwritten_global_group:
-    name: overwritten_global_group
     inline_policies: ['global_policy']
   # - A policy is defined in envs/all
   # - The policy is also defined in envs/prod/iam/policies.yml
   # - The policy should be overwritten
-  overwritten_global_policy:
-    name: overwritten_global_policy
+  overwritten_global_policy_group:
     inline_policies: ['global_policy']
