@@ -1,0 +1,7 @@
+iam_users:
+  global_only_group_user:
+    groups: ['global_only_group']
+    access_key_state: create
+  overwritten_global_policy_group_user:
+    groups: ['overwritten_global_policy_group']
+    access_key_state: create

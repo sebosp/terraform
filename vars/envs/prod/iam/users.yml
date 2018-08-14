@@ -1,0 +1,5 @@
+custom_iam_users:
+  prod_user_1:
+    name: prod_user_1
+    groups: ['prod_only_group']
+    access_key_state: omit
